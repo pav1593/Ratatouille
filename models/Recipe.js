@@ -19,10 +19,10 @@ Recipe.init(
       type: DataTypes.STRING,
     },
     ingredients: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     steps: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     date_created: {
       type: DataTypes.DATE,
