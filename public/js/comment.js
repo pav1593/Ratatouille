@@ -9,7 +9,7 @@ const submitCommentHandler = async (event) => {
         window.location.toString.split('/').length - 1
     ];
 
-    if (comment && rating) {
+    if (comment && rating && recipe_id) {
        const response = await fetch('/api/comments', {
         method: 'POST',
         body: JSON.stringify({comment, rating, recipe_id}),
