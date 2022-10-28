@@ -5,18 +5,21 @@ const submitComment = document.querySelector('#comment-submit');
 const submitCommentHandler = async (event) => {
     const comment = document.querySelector('#comment').value.trim();
     const rating = document.querySelector('#rating').value.trim();
+    const recipe_id = window.location.toString().split('/')[
+        window.location.toString.split('/').length - 1
+    ];
 
-    if (comment && rating) {
+    if (comment && rating && recipe_id) {
        const response = await fetch('/api/comments', {
         method: 'POST',
-        body: JSON.stringify({comment, rating}),
+        body: JSON.stringify({comment, rating, recipe_id}),
         headers: {
             'Content-Type': 'application/json',
        }
     });
     //direct back to recipe if response ok.
     if (response.ok) {
-        document.location.replace('/api/recipe');
+        document.location.replace('/api/recipes');
     }else {
         alert('Failed to create a comment');
     }
@@ -30,15 +33,15 @@ submitComment.addEventListener('submit', submitCommentHandler);
 const deleteComment = document.querySelector('#comment-delete');
 
 const deleteCommentHandler = async (event) => {
-    if(event.target.hasAttribute('comment-id')) {
-        const id = event.target.getAttribute('comment_id');
+    if(event.target.hasAttribute('data-id')) {
+        const id = event.target.getAttribute('data-id');
 
         const response = await fetch(`/api/comments/${id}`, {
             method:'DELETE',
         });
         //direct to the recipe page after deleting the comment;
         if(response.ok) {
-            document.location.replace('/recipe')
+            document.location.replace('/api/recipes')
         } else {
             alert('Failed to delete comment');
         }
