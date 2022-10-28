@@ -5,11 +5,14 @@ const submitComment = document.querySelector('#comment-submit');
 const submitCommentHandler = async (event) => {
     const comment = document.querySelector('#comment').value.trim();
     const rating = document.querySelector('#rating').value.trim();
+    const recipe_id = window.location.toString().split('/')[
+        window.location.toString.split('/').length - 1
+    ];
 
     if (comment && rating) {
        const response = await fetch('/api/comments', {
         method: 'POST',
-        body: JSON.stringify({comment, rating}),
+        body: JSON.stringify({comment, rating, recipe_id}),
         headers: {
             'Content-Type': 'application/json',
        }
