@@ -19,7 +19,7 @@ const submitCommentHandler = async (event) => {
     });
     //direct back to recipe if response ok.
     if (response.ok) {
-        document.location.replace('/api/recipe');
+        document.location.replace('/api/recipes');
     }else {
         alert('Failed to create a comment');
     }
@@ -41,7 +41,7 @@ const deleteCommentHandler = async (event) => {
         });
         //direct to the recipe page after deleting the comment;
         if(response.ok) {
-            document.location.replace('/recipe')
+            document.location.replace('/api/recipes')
         } else {
             alert('Failed to delete comment');
         }
