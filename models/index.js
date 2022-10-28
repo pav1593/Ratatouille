@@ -14,7 +14,7 @@ Recipe.belongsTo(User, {
     foreignKey: 'user_id',
 });
 
-
+/*
 // Users hasMany Favourites
 User.hasMany(Favourite,{
   foreignKey:'user_id',
@@ -24,6 +24,23 @@ User.hasMany(Favourite,{
 // Favourite belongsTo User
 Favourite.belongsTo(User, {
     foreignKey: 'user_id',
+});
+*/
+
+// User belongsToMany Recipes through Favourite
+User.belongsToMany(Recipe, {
+  through: {
+    model: Favourite,
+    unique: false
+  }
+});
+
+// Recipe belongsToMany Users through Favourite
+Recipe.belongsToMany(User, {
+  through: {
+    model: Favourite,
+    unique: false
+  }
 });
 
 // Users hasMany Commments
