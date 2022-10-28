@@ -30,8 +30,8 @@ submitComment.addEventListener('submit', submitCommentHandler);
 const deleteComment = document.querySelector('#comment-delete');
 
 const deleteCommentHandler = async (event) => {
-    if(event.target.hasAttribute('comment-id')) {
-        const id = event.target.getAttribute('comment_id');
+    if(event.target.hasAttribute('data-id')) {
+        const id = event.target.getAttribute('data-id');
 
         const response = await fetch(`/api/comments/${id}`, {
             method:'DELETE',
