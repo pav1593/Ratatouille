@@ -38,6 +38,12 @@ Recipe.init(
     },
   },
   {
+    hooks: {
+      beforeUpdate: async (updateRecipe) => {
+        updateRecipe.date_created = new Date.now;
+        return updateRecipe;
+      },
+    },
     sequelize,
     timestamps: false,
     freezeTableName: true,
