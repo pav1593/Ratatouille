@@ -4,15 +4,15 @@ const Favourite = require('./Favourite');
 const Comment = require('./Comment');
 
 // Users hasMany Recipes
-User.hasMany(Recipe,{
-  foreignKey:'user_id',
-  onDelete: 'CASCADE',
-});
+// User.hasMany(Recipe,{
+//   foreignKey:'user_id',
+//   onDelete: 'CASCADE',
+// });
 
-// Recipe belongsTo User
-Recipe.belongsTo(User, {
-    foreignKey: 'user_id',
-});
+// // Recipe belongsTo User
+// Recipe.belongsTo(User, {
+//     foreignKey: 'user_id',
+// });
 
 /*
 // Users hasMany Favourites
@@ -31,6 +31,7 @@ Favourite.belongsTo(User, {
 User.belongsToMany(Recipe, {
   through: {
     model: Favourite,
+    as: "favourite_recipes",
     unique: false
   }
 });
@@ -39,6 +40,7 @@ User.belongsToMany(Recipe, {
 Recipe.belongsToMany(User, {
   through: {
     model: Favourite,
+    as: "users_favourites",
     unique: false
   }
 });
@@ -66,4 +68,4 @@ Comment.belongsTo(Recipe,{
 });
 
 
-module.exports = { Recipe,User,Favourite,Comment };
+module.exports = { Recipe,User,Comment,Favourite };
