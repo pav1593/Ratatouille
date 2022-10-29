@@ -12,6 +12,11 @@ Favourite.init(
       primaryKey: true,
       autoIncrement: true,
     },
+    date_created: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
     recipe_id: {
       type: DataTypes.INTEGER,
       references: {

@@ -1,3 +1,4 @@
+
 const router = require ('express').Router();
 const { User, Recipe, Comment, Favourite } = require('../models');
 const sequelize = require('../config/connection');
@@ -69,3 +70,4 @@ router.get('/login', (req, res)=> {
 
 
 module.exports = router;
+
