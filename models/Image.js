@@ -1,28 +1,25 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Recipe extends Model {}
+// create the Image model
+class Image extends Model {}
 
-Recipe.init(
+// create fields/columns for Image model
+Image.init(
   {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      autoIncrement: true
     },
     description: {
       type: DataTypes.STRING,
+      allowNull: true
     },
-    ingredients: {
-      type: DataTypes.TEXT,
-    },
-    steps: {
-      type: DataTypes.TEXT,
+    location: {
+      type: DataTypes.STRING,
+      allowNull: false
     },
     date_created: {
       type: DataTypes.DATE,
@@ -34,16 +31,25 @@ Recipe.init(
       references: {
         model: 'user',
         key: 'id',
-      },
+        unique: false
+      }
     },
+    recipe_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'recipe',
+        key: 'id',
+        unique: false
+      }
+    }
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'recipe',
+    modelName: 'image'
   }
 );
 
-module.exports = Recipe;
+module.exports = Image;

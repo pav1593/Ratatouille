@@ -2,30 +2,8 @@ const Recipe = require('./Recipe');
 const User = require('./User');
 const Favourite = require('./Favourite');
 const Comment = require('./Comment');
+const Image = require('./Image');
 
-// Users hasMany Recipes
-// User.hasMany(Recipe,{
-//   foreignKey:'user_id',
-//   onDelete: 'CASCADE',
-// });
-
-// // Recipe belongsTo User
-// Recipe.belongsTo(User, {
-//     foreignKey: 'user_id',
-// });
-
-/*
-// Users hasMany Favourites
-User.hasMany(Favourite,{
-  foreignKey:'user_id',
-  onDelete: 'CASCADE',
-});
-
-// Favourite belongsTo User
-Favourite.belongsTo(User, {
-    foreignKey: 'user_id',
-});
-*/
 
 // User belongsToMany Recipes through Favourite
 User.belongsToMany(Recipe, {
@@ -44,6 +22,27 @@ Recipe.belongsToMany(User, {
     unique: false
   }
 });
+
+// User hasMany Images
+User.hasMany(Image, {
+    foreignKey:'user_id',
+    onDelete: 'CASCADE',
+ });
+
+ Image.belongsTo(User, {
+  foreignKey:'user_id',
+ });
+
+// Recipe hasMany Images
+Recipe.hasMany(Image, {
+  foreignKey:'recipe_id',
+  onDelete: 'CASCADE',
+});
+
+Image.belongsTo(Recipe, {
+  foreignKey:'recipe_id',
+ });
+
 
 // Users hasMany Commments
 User.hasMany(Comment, {
@@ -68,4 +67,4 @@ Comment.belongsTo(Recipe,{
 });
 
 
-module.exports = { Recipe,User,Comment,Favourite };
+module.exports = { Recipe,User,Comment,Favourite,Image };
