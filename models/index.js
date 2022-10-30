@@ -5,23 +5,61 @@ const Comment = require('./Comment');
 const Image = require('./Image');
 
 
-// User belongsToMany Recipes through Favourite
-User.belongsToMany(Recipe, {
-  through: {
-    model: Favourite,
-    as: "favourite_recipes",
-    unique: false
-  }
+// // User belongsToMany Recipes through Favourite
+// User.belongsToMany(Recipe, {
+//   through: {
+//     model: Favourite,
+//     as: "favourite_recipes",
+//     unique: false
+//   }
+// });
+
+// // Recipe belongsToMany Users through Favourite
+// Recipe.belongsToMany(User, {
+//   through: {
+//     model: Favourite,
+//     as: "users_favourites",
+//     unique: false
+//   }
+// });
+
+// User hasMany Recipes
+// Recipe belongsTo User
+User.hasMany(Recipe, {
+  foreignKey:'user_id',
+  onDelete: 'CASCADE',
 });
 
-// Recipe belongsToMany Users through Favourite
-Recipe.belongsToMany(User, {
-  through: {
-    model: Favourite,
-    as: "users_favourites",
-    unique: false
-  }
+Recipe.belongsTo(User, {
+foreignKey:'user_id',
 });
+
+
+// User hasMany Favourites
+// Favourite belongsTo User
+User.hasMany(Favourite, {
+  foreignKey:'user_id',
+  onDelete: 'CASCADE',
+});
+
+Favourite.belongsTo(User, {
+foreignKey:'user_id',
+});
+
+
+// Recipe hasMany Favourites
+// Favourite belongsTo Recipe
+Recipe.hasMany(Favourite, {
+  foreignKey:'recipe_id',
+  onDelete: 'CASCADE',
+});
+
+Favourite.belongsTo(User, {
+foreignKey:'recipe_id',
+});
+
+
+
 
 // User hasMany Images
 User.hasMany(Image, {

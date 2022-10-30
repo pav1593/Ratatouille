@@ -22,7 +22,7 @@ Favourite.init(
       references: {
         model: 'recipe',
         key: 'id',
-        unique: false
+        //unique: false
       }
     },
     user_id: {
@@ -30,7 +30,7 @@ Favourite.init(
       references: {
         model: 'user',
         key: 'id',
-        unique: false
+        //unique: false
       }
     }
   },

@@ -37,7 +37,7 @@ Comment.init(
       references: {
         model: 'user',
         key: 'id',
-        unique: false
+        //unique: false
       }
     },
     recipe_id: {
@@ -45,7 +45,7 @@ Comment.init(
       references: {
         model: 'recipe',
         key: 'id',
-        unique: false
+        //unique: false
       }
     }
   },

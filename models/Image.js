@@ -31,7 +31,7 @@ Image.init(
       references: {
         model: 'user',
         key: 'id',
-        unique: false
+       // unique: false
       }
     },
     recipe_id: {
@@ -39,7 +39,7 @@ Image.init(
       references: {
         model: 'recipe',
         key: 'id',
-        unique: false
+       // unique: false
       }
     }
   },

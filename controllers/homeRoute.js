@@ -1,6 +1,6 @@
 
 const router = require ('express').Router();
-const { User, Recipe, Comment, Favourite } = require('../models');
+const { User, Recipe, Comment, Favourite,Image } = require('../models');
 const sequelize = require('../config/connection');
 const withAuth = require('../utils/auth');
 
@@ -9,7 +9,9 @@ router.get('/', async(req, res) => {
     try{
         const recipeData = await Recipe.findAll({
             attributes: ['name', 'date_created'],//and picture uploaded?
-            include: [{model: User, attributes: ['name']}]
+            include: [{model: User, attributes: ['name']},
+                      {model: Image},
+                     ]
         });
         const recipes = recipeData.map((recipe)=>recipe.get({plain:true}));
 
@@ -17,6 +19,7 @@ router.get('/', async(req, res) => {
             recipes,
             logged_in: req.session.logged_in
         });
+        res.status(200).json(recipes);
     } catch (err) {
         res.status(500).json(err);}  
 });
