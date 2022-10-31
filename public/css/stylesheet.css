@@ -1,0 +1,17 @@
+.card {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px 1px grey;
+}
+
+.card-body a {
+  margin: auto;
+  text-align: center;
+  align-items: center;
+  width: 100%;
+}
+
+.login-form {
+  width: 50%;
+  margin: auto;
+}
