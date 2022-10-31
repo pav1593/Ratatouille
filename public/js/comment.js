@@ -3,6 +3,8 @@
 const submitComment = document.querySelector('#comment-submit');
 
 const submitCommentHandler = async (event) => {
+    event.preventDefault();
+
     const comment = document.querySelector('#comment').value.trim();
     const rating = document.querySelector('#rating').value.trim();
     const recipe_id = window.location.toString().split('/')[
@@ -19,7 +21,7 @@ const submitCommentHandler = async (event) => {
     });
     //direct back to recipe if response ok.
     if (response.ok) {
-        document.location.replace('/api/recipes');
+        document.location.replace('/recipes');
     }else {
         alert('Failed to create a comment');
     }
@@ -33,6 +35,8 @@ submitComment.addEventListener('submit', submitCommentHandler);
 const deleteComment = document.querySelector('#comment-delete');
 
 const deleteCommentHandler = async (event) => {
+    event.preventDefault();
+    
     if(event.target.hasAttribute('data-id')) {
         const id = event.target.getAttribute('data-id');
 
@@ -41,7 +45,7 @@ const deleteCommentHandler = async (event) => {
         });
         //direct to the recipe page after deleting the comment;
         if(response.ok) {
-            document.location.replace('/api/recipes')
+            document.location.replace('/recipes')
         } else {
             alert('Failed to delete comment');
         }
