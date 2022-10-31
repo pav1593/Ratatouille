@@ -10,44 +10,49 @@
       integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../public/css/login-page.css" />
+    <link rel="stylesheet" href="../public/css/stylesheet.css" />
     <title>Ratatouille</title>
   </head>
   <body>
-    <!-- Register or sign up depending on if user is logged in or not -->
-    <div class="login-register-container">
-      <!-- go back to homepage -->
-      <a class="logo-login" href="#">
-        <img src="../public/images/ratatouille-logo.png" alt="Logo" />
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img
+          src="../public/images/ratatouille-logo.png"
+          width="200px"
+          alt="Logo"
+        />
       </a>
+    </nav>
 
-      <h3 class="text-center my-5">Register/Please Login</h3>
-      <form class="login-form">
-        <div class="form-group">
-          <label for="email">Email address</label>
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            aria-describedby="emailHelp"
-          />
-          <!-- error email message from express controller -->
-          <small id="emailHelp" class="form-text text-muted"
-            >have error message render here.</small
-          >
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" id="password" />
+    <form class="login-form mt-5">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+        />
+        <!-- error email message from express controller -->
+        <small id="emailHelp" class="form-text text-muted"
+          >have error message render here.</small
+        >
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="exampleInputPassword1"
+        />
 
-          <!-- error password message from express controller -->
-          <small id="passwordHelp" class="form-text text-muted"
-            >have password error message render here.</small
-          >
-        </div>
-        <button type="submit" class="btn btn-primary">Sign Up/Sign In</button>
-      </form>
-    </div>
+        <!-- error password message from express controller -->
+        <small id="passwordHelp" class="form-text text-muted"
+          >have password error message render here.</small
+        >
+      </div>
+      <button type="submit" class="btn btn-primary">Sign Up</button>
+    </form>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script

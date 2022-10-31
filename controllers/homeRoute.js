@@ -8,8 +8,7 @@ const withAuth = require('../utils/auth');
 router.get('/', async(req, res) => {
     try{
         const recipeData = await Recipe.findAll({
-            attributes: ['name', 'date_created'],//and picture uploaded?
-            include: [{model: User, attributes: ['name']},
+            include: [{model: User, attributes: {exclude: ['password']}},
                       {model: Image},
                      ]
         });
@@ -19,7 +18,7 @@ router.get('/', async(req, res) => {
             recipes,
             logged_in: req.session.logged_in
         });
-        res.status(200).json(recipes);
+        //res.status(200).json(recipes);
     } catch (err) {
         res.status(500).json(err);}  
 });
@@ -28,12 +27,16 @@ router.get('/', async(req, res) => {
 router.get('/recipes/:id', async(req, res)=> {
      try{
         const recipeData = await Recipe.findByPk(req.params.id, {
-         attributes: ['name', 'description', 'ingredients', 'steps','date_created'],
-         include: [{model: User, attributes:['name']}, {model: Comment}]
-        })
+            include: [{ model: User,
+                attributes: {exclude: ['password']},
+              }, 
+              {model:Comment},
+              {model:Image}],
+        });
+
         const recipes = recipeData.get({plain: true});
 
-        res.render('receipes', {
+        res.render('recipe', {
             ...recipes,
             logged_in: req.session.logged_in
         });

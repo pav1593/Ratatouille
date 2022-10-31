@@ -1,0 +1,19 @@
+<!-- Loop over each object in the projects array -->
+{{#each recipes as |recipe| }}
+<div class="container d-flex flex-wrap mt-5">
+  <!-- card replace with handlebar -->
+  <div class="card m-2" style="width: 50%">
+    <img class="card-img-top" src={{recipe.images.0.location}} alt="Card image cap" />
+    <div class="card-body align-item-center">
+      <h3 class="card-title">{{recipe.name}}</h3>
+      <p class="card-text">
+        {{recipe.description}}
+      </p>
+      <p class="card-text">
+        Created by {{recipe.user.name}} on {{format_date recipe.date_created}}
+      </p>
+      <a href="/recipes/{{recipe.id}}" class="btn btn-primary">View Recipe</a>
+    </div>
+  </div>
+</div>
+{{/each}}

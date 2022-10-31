@@ -1,6 +1,16 @@
 const router = require('express').Router();
 const {User,Favourite} = require('../../models');
 
+//---------------router to get all the user infors----------------------
+router.get('/', async(req, res) => {
+  try{
+    const userData = await User.findAll();
+    res.status(200).json(userData);
+  }catch(err) {
+    res.status(500).json(err)
+  }
+})
+
 //------------------router to receive the singup infos-------------------
 router.post('/', async (req, res) => {
     try{

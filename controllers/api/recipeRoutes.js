@@ -2,6 +2,10 @@ const router = require('express').Router();
 const {Recipe,User,Favourite,Comment,Image} = require('../../models');
 const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
+const { storage } = require('../../storage/storage');
+const multer = require('multer');
+const upload = multer({ storage });
+
 
 //-----------routes for user recipe CRUD---------------------
 router.get('/', async (req, res) => {
@@ -10,20 +14,21 @@ router.get('/', async (req, res) => {
         const recipeData = await Recipe.findAll({
             include: [{ model: User,
                         attributes: {exclude: ['password']},
-                        through: {model:Favourite, attributes: ['date_created']}, 
-                      },
+                      }, 
+                      {model:Favourite, attributes: ['date_created']}, 
+                      {model:Comment},
                       {model:Image}],
-            where: {
-              user_id: req.session.user_id
-            },
+            // where: {
+            //   user_id: req.session.user_id
+            // },
           });
     
         const recipes = recipeData.map((recipe) => recipe.get({ plain: true }));
     
-        // res.render('recipes', {
-        //   recipes,
-        //   logged_in: req.session.logged_in,
-        // });
+        res.render('user', {
+          recipes,
+          logged_in: req.session.logged_in,
+        });
 
         res.status(200).json(recipes);
       } catch (err) {
@@ -36,20 +41,21 @@ router.get('/', async (req, res) => {
     try {
       const recipeData = await Recipe.findByPk(req.params.id, {
         include: [{ model: User,
-                    attributes: {exclude: ['password']},
-                    through: {model:Favourite, attributes: ['date_created']},
-                  },
-                  {model: Image}],
-        where: {
-          user_id: req.session.user_id
-        },          
-      });
+                  attributes: {exclude: ['password']},
+                }, 
+                {model:Favourite, attributes: ['date_created']}, 
+                {model:Comment},
+                {model:Image}],
+        // where: {
+        //   user_id: req.session.user_id
+        // },
+        });
   
       if (!recipeData) {
         res.status(404).json({ message: 'No Recipe found with that id for the user!' });
         return;
       }
-  
+
       res.status(200).json(recipeData);
     } catch (err) {
       res.status(500).json(err);
@@ -117,17 +123,21 @@ router.get('/', async (req, res) => {
 
   //-----------routes for user recipe images creation and deletion ---------------------
   
-  router.post('/images', async (req, res) => {
-    // create a new favourite for the logged in user
+  router.post('/images/:recipe_id',upload.array('image'), async (req, res) => {
+    // add images for recipe_ for the logged in user
+  
     try {
       const imageData = await Image.create({
-        ...req.body,
+        recipe_id: req.params.recipe_id,
+        description: req.files[0].originalname,
+        location: req.files[0].path,
         user_id: req.session.user_id,
       });
-      res.status(200).json(imageData);
+      res.status(200).redirect(`/recipes/${req.params.recipe_id}`);
     } catch (err) {
       res.status(400).json(err);
     }
+  
   });
   
   
@@ -137,7 +147,7 @@ router.get('/', async (req, res) => {
       const imageData = await Image.destroy({
         where: {
           id: req.params.id,
-          user_id: req.session.user_id //need to change this for prod with session user_id
+          user_id: req.session.user_id 
         },
       });
   
