@@ -10,11 +10,17 @@
       integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../../public/css/stylesheet.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../../public/css/profile-page.css" />
     <title>Ratatouille</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-light justify-content-between"
+    >
       <a class="navbar-brand" href="#">
         <img
           src="../../public/images/ratatouille-logo.png"
@@ -23,12 +29,9 @@
         />
       </a>
 
-      <div
-        class="collapse navbar-collapse justify-content-end"
-        id="navbarSupportedContent"
-      >
+      <div class="justify-content-end" id="navbarSupportedContent">
         <!-- should be rendered conditionally based on logged in or not -->
-        <ul class="navbar-nav">
+        <ul class="navbar-nav flex-row">
           <li class="nav-item justify-content-center">
             <a class="nav-link disabled" href="#">Welcome 'Name'</a>
           </li>
@@ -38,56 +41,75 @@
         </ul>
       </div>
     </nav>
-    <div class="overflow-auto my-5 favourite-cards">
-      <h3 class="text-center">
-        placeholder text if there are no favourite recipes
-      </h3>
-      <div class="card m-2 card-favourite" style="width: 50%">
-        <img
-          class="card-img-top"
-          src="https://media.istockphoto.com/photos/table-top-view-of-spicy-food-picture-id1316145932?b=1&k=20&m=1316145932&s=170667a&w=0&h=feyrNSTglzksHoEDSsnrG47UoY_XX4PtayUPpSMunQI="
-          alt="Card image cap"
-        />
+
+    <!-- your recipe -->
+    <h3 class="text-center mt-5">Your Recipes:</h3>
+    <!-- your recipe container -->
+    <div class="container my-5 recipe-container">
+      <!-- card start copy here-->
+      <div class="card m-3">
+        <div class="image">
+          <img
+            src="https://media.istockphoto.com/photos/table-top-view-of-spicy-food-picture-id1316145932?b=1&k=20&m=1316145932&s=170667a&w=0&h=feyrNSTglzksHoEDSsnrG47UoY_XX4PtayUPpSMunQI="
+            alt="Card image cap"
+          />
+        </div>
         <div class="card-body align-item-center">
-          <h5 class="card-title">Recipe Name Here</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
+          <div>
+            <h5 class="card-title">Recipe Name Here</h5>
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+          </div>
           <a href="#" class="btn btn-primary">View Recipe</a>
         </div>
+        <div class="card-end">
+          <button type="button" class="btn btn-danger" id="delete-recipe">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+          <button type="button" class="btn btn-info" id="update-recipe">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </button>
+        </div>
       </div>
+      <!-- card end copy here-->
+      <!-- add recipe button has to be within the container -->
+      <button type="button" class="btn btn-success mb-4" id="delete-recipe">
+        <i class="fa-solid fa-plus"></i>Add a recipe
+      </button>
     </div>
 
-    <h3 class="text-center">Change Profile Settings</h3>
-
-    <form class="login-form mt-5">
-      <h4 class="my-5">Change password</h4>
-      <div class="form-group">
-        <label for="oldPassword">Old Password</label>
-        <input
-          type="password"
-          class="form-control"
-          id="oldPassword"
-          aria-describedby="emailHelp"
-        />
+    <!-- favorites -->
+    <h3 class="text-center mt-5">Your Favorites:</h3>
+    <!-- your favorite container -->
+    <div class="container my-5 recipe-container">
+      <!-- card start copy here-->
+      <div class="card m-3">
+        <div class="image">
+          <img
+            src="https://media.istockphoto.com/photos/table-top-view-of-spicy-food-picture-id1316145932?b=1&k=20&m=1316145932&s=170667a&w=0&h=feyrNSTglzksHoEDSsnrG47UoY_XX4PtayUPpSMunQI="
+            alt="Card image cap"
+          />
+        </div>
+        <div class="card-body align-item-center">
+          <div>
+            <h5 class="card-title">Recipe Name Here</h5>
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+          </div>
+          <a href="#" class="btn btn-primary">View Recipe</a>
+        </div>
+        <div class="card-end">
+          <button type="button" class="btn btn-danger" id="delete-recipe">
+            <i class="fa-solid fa-heart"></i>
+          </button>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="newPassword">New Password</label>
-        <input type="password" class="form-control" id="newPassword" />
-
-        <!-- error password message from express controller -->
-        <small id="passwordHelp" class="form-text text-muted"
-          >have password error message render here.</small
-        >
-      </div>
-      <button type="submit" class="btn btn-primary">Change Password</button>
-    </form>
-
-    <!-- just have a window popup to confirm -->
-    <button type="button" class="btn btn-danger d-block mx-auto my-5">
-      Delete Profile
-    </button>
+      <!-- card end copy here-->
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script

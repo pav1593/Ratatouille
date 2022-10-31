@@ -10,14 +10,14 @@
       integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../public/css/recipe-page.css" />
+    <link rel="stylesheet" href="../../public/css/recipe-page.css" />
     <title>Ratatouille</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="#">
         <img
-          src="../public/images/ratatouille-logo.png"
+          src="../../public/images/ratatouille-logo.png"
           width="200px"
           alt="Logo"
         />
@@ -52,8 +52,8 @@
         </ul>
       </div>
     </nav>
-
-    <form class="login-form mt-5">
+    <h2 class="text-center my-5">Add a New Recipe</h2>
+    <form class="recipe-form">
       <!-- name of recipe -->
       <div class="form-group">
         <label for="name">What is the name of your recipe?</label>
@@ -76,8 +76,34 @@
         <label for="steps">List the steps required to cook this recipe</label
         ><textarea name="steps" id="steps"></textarea>
       </div>
+      <!-- upload file -->
+      <label for="steps">Upload an image for your recipe</label>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            id="inputGroupFileAddon03"
+          >
+            Button
+          </button>
+        </div>
+        <div class="custom-file">
+          <input
+            type="file"
+            class="custom-file-input"
+            id="inputGroupFile03"
+            aria-describedby="inputGroupFileAddon03"
+          />
+          <label class="custom-file-label" for="inputGroupFile03"
+            >Choose file</label
+          >
+        </div>
+      </div>
 
-      <button type="submit" class="btn btn-primary">Share your recipe!</button>
+      <button type="submit" class="btn btn-primary mb-5 d-block mx-auto">
+        Share your recipe!
+      </button>
     </form>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
