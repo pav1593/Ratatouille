@@ -1,4 +1,5 @@
 //connect to modules
+require('dotenv').config();
 const path = require ('path');
 const express = require('express');
 const session = require('express-session');
@@ -11,6 +12,10 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+const { storage } = require('./storage/storage');
+const multer = require('multer');
+const upload = multer({ storage });
 
 const hbs = exphbs.create({ helpers });
 

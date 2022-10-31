@@ -1,0 +1,17 @@
+<div class="text-center">
+  <img src={{images.0.location}} style="width: 200px; height: 200px;">
+  <h2>{{name}}</h2>
+  <h3>{{description}}</h3> <br/>
+  <h2>Ingredients:</h2>
+  <p>{{ingredients}}</p> <br/>
+  <h2>Ingredients:</h2>
+  <p>{{steps}}</p> <br/>
+  <p>Created by {{user.name}} on {{format_date date_created}}</p>
+  
+</div>
+  {{#each images}}
+      <div>
+       <img src={{location}} style="width: 200px; height: 200px;">
+     </div>
+  {{/each}}
+
