@@ -123,17 +123,21 @@ router.get('/', async (req, res) => {
 
   //-----------routes for user recipe images creation and deletion ---------------------
   
-  router.post('/images', async (req, res) => {
-    // create a new favourite for the logged in user
+  router.post('/images/:recipe_id',upload.array('image'), async (req, res) => {
+    // add images for recipe_ for the logged in user
+  
     try {
       const imageData = await Image.create({
-        ...req.body,
+        recipe_id: req.params.recipe_id,
+        description: req.files[0].originalname,
+        location: req.files[0].path,
         user_id: req.session.user_id,
       });
-      res.status(200).json(imageData);
+      res.status(200).redirect(`/recipes/${req.params.recipe_id}`);
     } catch (err) {
       res.status(400).json(err);
     }
+  
   });
   
   
@@ -143,7 +147,7 @@ router.get('/', async (req, res) => {
       const imageData = await Image.destroy({
         where: {
           id: req.params.id,
-          user_id: req.session.user_id //need to change this for prod with session user_id
+          user_id: req.session.user_id 
         },
       });
   
