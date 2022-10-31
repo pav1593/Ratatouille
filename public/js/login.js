@@ -1,5 +1,5 @@
 //----------get the login email & password----------------------------------------
-const logInForm = doucment.querySelector('.login-form')
+const logInForm = document.querySelector('.login-form')
 
 const logInHandler = async (event) => {
     event.preventDefault();
@@ -32,6 +32,7 @@ const signUpHandler = async (event) => {
     const name = document.querySelector('#signup-name').value.trim();
     const email = document.querySelector('#signup-email').value.trim();
     const password = document.querySelector('#signup-password').value.trim();
+    console.log('dkjfkaj;sdklfjj;aklsdfjkdjflkjsdf;lkjsda;lkfjl;askdjfl;kjsd;fka;dsfkj')
 
     if (name && email && password) {
         const response = await fetch('/api/users', {
