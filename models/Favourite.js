@@ -23,7 +23,7 @@ Favourite.init(
         model: 'recipe',
         key: 'id',
         //unique: false
-      }
+      },
     },
     user_id: {
       type: DataTypes.INTEGER,
@@ -31,8 +31,8 @@ Favourite.init(
         model: 'user',
         key: 'id',
         //unique: false
-      }
-    }
+      },
+    },
   },
   {
     sequelize,

@@ -43,13 +43,16 @@ User.init(
         return newUserData;
       },
       beforeBulkCreate: async (bulkUserData) => {
-          bulkUserData.forEach( async (user, index) => {  
-            user.password = await bcrypt.hash(user.password, 10);
-            return user;  
-           });
+        bulkUserData.forEach(async (user, index) => {
+          user.password = await bcrypt.hash(user.password, 10);
+          return user;
+        });
       },
       beforeUpdate: async (updatedUserData) => {
-        updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+        updatedUserData.password = await bcrypt.hash(
+          updatedUserData.password,
+          10
+        );
         return updatedUserData;
       },
     },

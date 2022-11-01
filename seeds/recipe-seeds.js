@@ -2,8 +2,9 @@ const { Recipe } = require('../models');
 
 const recipeData = [
   {
-    name: "Chorizo & mozzarella gnocchi bake",
-    description: "Upgrade cheesy tomato pasta with gnocchi, chorizo and mozzarella for a comforting bake that makes an excellent midweek meal",
+    name: 'Chorizo & mozzarella gnocchi bake',
+    description:
+      'Upgrade cheesy tomato pasta with gnocchi, chorizo and mozzarella for a comforting bake that makes an excellent midweek meal',
     ingredients: `1 tbsp olive oil
     1 onion , finely chopped
     2 garlic cloves , crushed
@@ -19,11 +20,12 @@ const recipeData = [
     
     STEP 2
     Stir ¾ of the mozzarella and most of the basil through the gnocchi. Divide the mixture between six ovenproof ramekins, or put in one baking dish. Top with the remaining mozzarella, then grill for 3 mins, or until the cheese is melted and golden. Season, scatter over the remaining basil and serve with green salad.`,
-    user_id: 1
+    user_id: 1,
   },
   {
-    name: "Easy butter chicken",
-    description: "Fancy a healthy version of your favourite Friday night curry? Try our easy butter chicken - the meat can be marinaded the day before so you can get ahead on your prep",
+    name: 'Easy butter chicken',
+    description:
+      'Fancy a healthy version of your favourite Friday night curry? Try our easy butter chicken - the meat can be marinaded the day before so you can get ahead on your prep',
     ingredients: `500g skinless boneless chicken thighs
     For the marinade:
     1/2-1 lemon, (to taste) juiced
@@ -56,11 +58,12 @@ const recipeData = [
     
     STEP 3
     Add the spices with the tomato purée, cook for a further 2 mins until fragrant, then add the stock and marinated chicken. Cook for 15 mins, then add any remaining marinade left in the bowl. Simmer for 5 mins, then sprinkle with the toasted almonds. Serve with rice, naan bread, chutney, coriander and lime wedges, if you like.`,
-    user_id: 1
+    user_id: 1,
   },
   {
-    name: "Easy green vegetable soup",
-    description: "Cook a bowlful of goodness inspired by the most famous soup connoisseur in the galaxy, the Soup Dragon, from the hit children's show Clangers",
+    name: 'Easy green vegetable soup',
+    description:
+      "Cook a bowlful of goodness inspired by the most famous soup connoisseur in the galaxy, the Soup Dragon, from the hit children's show Clangers",
     ingredients: `1bunch spring onions, chopped
     1large potato, peeled and chopped
     1 garlic clove, crushed
@@ -83,11 +86,12 @@ const recipeData = [
     
     STEP 5
     Ladle into bowls, then add some of the reserved cooked peas and scatter over your favourite soft herbs or cress. Serve with crusty bread, if you like.`,
-    user_id: 1
+    user_id: 1,
   },
   {
-    name: "Quick & easy hot-and-sour chicken noodle soup",
-    description: "Keep tasting the broth and add as much chilli and rice vinegar as you like to get the right balance of flavours",
+    name: 'Quick & easy hot-and-sour chicken noodle soup',
+    description:
+      'Keep tasting the broth and add as much chilli and rice vinegar as you like to get the right balance of flavours',
     ingredients: `140g dried wholewheat noodle
     1 tbsp groundnut oil
     2 tbsp grated ginger
@@ -110,7 +114,7 @@ const recipeData = [
     
     STEP 3
     Bring back to a simmer, then add the cornflour paste. Simmer and stir until thickened. Stir in the beansprouts and most of the spring onions, then ladle the soup over the noodles. Serve immediately, scattered with the remaining spring onions.`,
-    user_id: 2
+    user_id: 2,
   },
 ];
 
