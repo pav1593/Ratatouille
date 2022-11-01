@@ -33,7 +33,7 @@ const submitCommentHandler = async (event) => {
 submitComment.addEventListener('submit', submitCommentHandler);
 
 
-//-----------------delete comment--------------------
+// -----------------delete comment--------------------
 // const deleteComment = document.querySelector('#comment-delete');
 
 // const deleteCommentHandler = async (event) => {
@@ -54,4 +54,4 @@ submitComment.addEventListener('submit', submitCommentHandler);
 //     }
 // };
 
-// deleteComment.addEventListener('click', deleteCommentHandler);
+deleteComment.addEventListener('click', deleteCommentHandler);
