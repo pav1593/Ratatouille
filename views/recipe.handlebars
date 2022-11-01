@@ -35,23 +35,35 @@
     </div>
     {{/each}}
     <!-- comment cards generated -->
-    <h5 class="card-title">Comments: </h5>
-    {{#each comments as |comment|}}
-    <p>{{comment.comment}}</p>
-    <p>created by: on {{format_date comment.date_created}}</p>
-    {{/each}}
+    <div>
+      <h5 class="card-title">Comments: </h5>
+      {{#each comments as |comment|}}
+      <div class="alert alert-secondary" role="alert">
+        {{comment.comment}}<br>created by: on {{format_date comment.date_created}}
+      </div>
+      {{/each}}
+    </div>
   </div>
   {{!-- add comments after login --}}
   {{#if logged_in}}
-  <form class="comment-box comment-submit" action="POST">
-    <div class="form-group">
-      <label for="exampleFormControlTextarea1">Share your comments here:</label>
-      <textarea class="form-control" id="recipe-comment" rows="3"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary d-block mx-auto">
-      Submit
-    </button>
-  </form>
+  <div>
+    <h3>Create your comment:</h3>
+    <form class="comment-box comment-submit" action="POST">
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">On a scale of 1-5(with 1 being least favorable and 5
+          being most
+          favorable)</label>
+        <textarea class="form-control" id="rating-comment" rows="3" placeholder="eg.1"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Share your comments here:</label>
+        <textarea class="form-control" id="recipe-comment" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary d-block mx-auto">
+        Submit
+      </button>
+    </form>
+  </div>
 </div>
 </div>
 {{/if}}
