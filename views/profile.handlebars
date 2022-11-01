@@ -48,6 +48,7 @@
       </div>
       <div class='mb-3'>
         <div class='form-file custom-file'>
+          <label class='form-file-label' for='image'>Upload Images</label>
           <input
             class='form-control'
             type='file'
@@ -55,12 +56,14 @@
             name='image'
             multiple
           />
-          <label class='form-file-label' for='image'></label>
         </div>
       </div>
       {{! <button type="submit" class="btn btn-success">Upload</button> }}
       <div class='form-group'>
-        <button type='submit' class='btn btn-success'>Create</button>
+        <button
+          type='submit'
+          class='btn btn-success d-block mt-5 mx-auto'
+        >Create</button>
       </div>
     </form>
 
