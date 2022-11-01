@@ -8,35 +8,33 @@
   <div class="col-md-6">
     <h3>Create a New Recipe:</h3>
 
-    <form class="form new-project-form">
+    <form class="form new-project-form" action="/api/recipes/" method="POST" enctype="multipart/form-data" >
       <div class="form-group">
-        <label for="project-name">Recipe name:</label>
-        <input class="form-input" type="text" id="recipe-name" name="recipe-name" />
+        <label for="name">Recipe name:</label>
+        <input class="form-input" type="text" id="recipe-name" name="name" />
       </div>
       <div class="form-group">
-        <label for="project-desc">Description:</label>
-        <textarea class="form-input" id="recipe-desc" name="recipe-desc"></textarea>
+        <label for="description">Description:</label>
+        <textarea class="form-input" id="recipe-desc" name="description"></textarea>
       </div>
        <div class="form-group">
-        <label for="project-desc">Ingredients:</label>
-        <textarea class="form-input" id="recipe-ingr" name="recipe-ingr"></textarea>
+        <label for="ingredients">Ingredients:</label>
+        <textarea class="form-input" id="recipe-ingr" name="ingredients"></textarea>
       </div>
        <div class="form-group">
-        <label for="project-desc">Steps:</label>
-        <textarea class="form-input" id="recipe-steps" name="recipe-steps"></textarea>
+        <label for="steps">Steps:</label>
+        <textarea class="form-input" id="recipe-steps" name="steps"></textarea>
       </div>
-       <form action="/api/recipes/images/1" method="POST" enctype="multipart/form-data">
-                <div class="mb-3">
-                      <div class="form-file custom-file">
-                          <input class="form-control" type="file" id="formFile" name="image" multiple>
-                          <label class="form-file-label" for="image"></label>
-                      </div>
-                </div>
-                      <button type="submit" class="btn btn-success">Upload</button>
-            </form>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Create</button>
-      </div>
+        <div class="mb-3">
+              <div class="form-file custom-file">
+                  <input class="form-control" type="file" id="formFile" name="image" multiple>
+                  <label class="form-file-label" for="image"></label>
+              </div>
+        </div>
+                      {{!-- <button type="submit" class="btn btn-success">Upload</button> --}}
+          <div class="form-group">
+            <button type="submit" class="btn btn-success">Create</button>
+          </div>
     </form>  
    
   </div>
