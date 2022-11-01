@@ -17,7 +17,7 @@ const createRecipeHandler = async (event) => {
       },
     });
     if (response.ok) {
-      document.location.replace('/recipes');
+      document.location.replace('/');
     } else {
       alert('Failed to ceate recipe');
     }
@@ -47,7 +47,7 @@ const updateRecipeHandler = async (event) => {
     },
   });
   if (response.ok) {
-    document.location.replace('/recipes');
+    document.location.replace('/');
   } else {
     alert(response.statusText);
   }
@@ -69,7 +69,7 @@ const deleteRecipeHandler = async (event) => {
     method: 'DELETE',
   });
   if (response.ok) {
-    document.location.replace('/recipes');
+    document.location.replace('/');
   } else {
     alert('Failed to delete comment');
   }

@@ -17,6 +17,7 @@ router.get('/', async (req, res) => {
     res.render('homepage', {
       recipes,
       logged_in: req.session.logged_in,
+      style: 'index.css',
     });
     //res.status(200).json(recipes);
   } catch (err) {
@@ -47,20 +48,17 @@ router.get('/recipes/:id', async (req, res) => {
 });
 
 //------------------user profile routes-------------------
-router.get('/users', withAuth, async (req, res) => {
+router.get('/profile', withAuth, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [
-        { model: Recipe, attributes: ['name', 'date_created'] },
-        { model: Favourite },
-        { model: Comment },
-      ],
+      include: [{ model: Recipe }, { model: Image }],
     });
 
     const user = userData.get({ plain: true });
+    console.log(user);
 
-    res.render('userpage', { ...user, logged_in: true });
+    res.render('profile', { ...user, logged_in: true });
   } catch (err) {
     res.status(500).json(err);
   }

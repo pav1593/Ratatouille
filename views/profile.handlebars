@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="col-auto">
+    <h2>Welcome, {{name}}!</h2>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-md-6">
+    <h3>Create a New Recipe:</h3>
+
+    <form class="form new-project-form" action="/api/recipes/" method="POST" enctype="multipart/form-data" >
+      <div class="form-group">
+        <label for="name">Recipe name:</label>
+        <input class="form-input" type="text" id="recipe-name" name="name" />
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea class="form-input" id="recipe-desc" name="description"></textarea>
+      </div>
+       <div class="form-group">
+        <label for="ingredients">Ingredients:</label>
+        <textarea class="form-input" id="recipe-ingr" name="ingredients"></textarea>
+      </div>
+       <div class="form-group">
+        <label for="steps">Steps:</label>
+        <textarea class="form-input" id="recipe-steps" name="steps"></textarea>
+      </div>
+        <div class="mb-3">
+              <div class="form-file custom-file">
+                  <input class="form-control" type="file" id="formFile" name="image" multiple>
+                  <label class="form-file-label" for="image"></label>
+              </div>
+        </div>
+                      {{!-- <button type="submit" class="btn btn-success">Upload</button> --}}
+          <div class="form-group">
+            <button type="submit" class="btn btn-success">Create</button>
+          </div>
+    </form>  
+   
+  </div>
+
+
+  {{#if recipes.length}}
+  <div class="col-md-6 project-list">
+    <h3>Current Recipes:</h3>
+
+    {{#each recipes as |recipe|}}
+    <div class="row mb-2">
+      <div class="col-md-8">
+        <h4><a href="/recipes/{{recipe.id}}">{{recipe.name}}</a></h4>
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-sm btn-danger" data-id="{{recipe.id}}">DELETE</button>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+</div>
+
+<script src="./js/profile.js"></script>

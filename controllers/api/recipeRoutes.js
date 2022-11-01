@@ -63,14 +63,28 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', upload.array('image'), async (req, res) => {
   // create a new recipe
   try {
     const recipeData = await Recipe.create({
       ...req.body,
       user_id: req.session.user_id,
     });
-    res.status(200).json(recipeData);
+
+    const recipe = recipeData.get({ plain: true });
+
+    const imageData = await Image.create({
+      recipe_id: recipe.id,
+      description: req.files[0].originalname,
+      location: req.files[0].path,
+      user_id: req.session.user_id,
+    });
+
+    const message = {
+      recipeData,
+      imageData,
+    };
+    res.status(200).json(message);
   } catch (err) {
     res.status(400).json(err);
   }
