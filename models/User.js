@@ -42,21 +42,22 @@ User.init(
         newUserData.password = await bcrypt.hash(newUserData.password, 10);
         return newUserData;
       },
-      beforeBulkCreate:  (users,options) => {
+      beforeBulkCreate: (users, options) => {
         for (const user of users) {
-          const {
-              password
-          } = user;
+          const { password } = user;
 
           var saltRounds = 10;
           var salt = bcrypt.genSaltSync(saltRounds);
           var hash = bcrypt.hashSync(password, salt);
           user.password = hash;
-      }
+        }
       },
 
       beforeUpdate: async (updatedUserData) => {
-        updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+        updatedUserData.password = await bcrypt.hash(
+          updatedUserData.password,
+          10
+        );
         return updatedUserData;
       },
     },

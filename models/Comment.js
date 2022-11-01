@@ -11,21 +11,21 @@ Comment.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     comment: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     rating: {
       type: DataTypes.INTEGER,
       allowNull: true,
       validate: {
         // validate integer type and range is 1..5
-        isInt: true, 
+        isInt: true,
         max: 5,
-        min: 1
-      }
+        min: 1,
+      },
     },
     date_created: {
       type: DataTypes.DATE,
@@ -38,7 +38,7 @@ Comment.init(
         model: 'user',
         key: 'id',
         //unique: false
-      }
+      },
     },
     recipe_id: {
       type: DataTypes.INTEGER,
@@ -46,15 +46,15 @@ Comment.init(
         model: 'recipe',
         key: 'id',
         //unique: false
-      }
-    }
+      },
+    },
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'comment'
+    modelName: 'comment',
   }
 );
 

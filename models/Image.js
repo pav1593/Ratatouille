@@ -11,15 +11,15 @@ Image.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     description: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     location: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     date_created: {
       type: DataTypes.DATE,
@@ -31,24 +31,24 @@ Image.init(
       references: {
         model: 'user',
         key: 'id',
-       // unique: false
-      }
+        // unique: false
+      },
     },
     recipe_id: {
       type: DataTypes.INTEGER,
       references: {
         model: 'recipe',
         key: 'id',
-       // unique: false
-      }
-    }
+        // unique: false
+      },
+    },
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'image'
+    modelName: 'image',
   }
 );
 

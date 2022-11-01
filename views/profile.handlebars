@@ -1,62 +1,97 @@
-<div class="row">
-  <div class="col-auto">
-    <h2>Welcome, {{name}}!</h2>
-  </div>
+<div class='row justify-content-center mt-5'>
+  <h2>Welcome, {{name}}!</h2>
 </div>
 
-<div class="row mt-4">
-  <div class="col-md-6">
+<div class='container d-flex flex-column mt-3'>
+  <div class='d-flex flex-column align-items-center'>
     <h3>Create a New Recipe:</h3>
 
-    <form class="form new-project-form" action="/api/recipes/" method="POST" enctype="multipart/form-data" >
-      <div class="form-group">
-        <label for="name">Recipe name:</label>
-        <input class="form-input" type="text" id="recipe-name" name="name" />
+    <form
+      class='form new-project-form mt-3'
+      action='/api/recipes/'
+      method='POST'
+      enctype='multipart/form-data'
+      style='width:80%;max-width:600px;'
+    >
+      <div class='form-group'>
+        <label for='name'>Recipe name:</label>
+        <input
+          class='form-input form-control form-control'
+          type='text'
+          id='recipe-name'
+          name='name'
+        />
       </div>
-      <div class="form-group">
-        <label for="description">Description:</label>
-        <textarea class="form-input" id="recipe-desc" name="description"></textarea>
+      <div class='form-group'>
+        <label for='description'>Description:</label>
+        <textarea
+          class='form-input form-control'
+          id='recipe-desc'
+          name='description'
+        ></textarea>
       </div>
-       <div class="form-group">
-        <label for="ingredients">Ingredients:</label>
-        <textarea class="form-input" id="recipe-ingr" name="ingredients"></textarea>
+      <div class='form-group'>
+        <label for='ingredients'>Ingredients:</label>
+        <textarea
+          class='form-input form-control'
+          id='recipe-ingr'
+          name='ingredients'
+        ></textarea>
       </div>
-       <div class="form-group">
-        <label for="steps">Steps:</label>
-        <textarea class="form-input" id="recipe-steps" name="steps"></textarea>
+      <div class='form-group'>
+        <label for='steps'>Steps:</label>
+        <textarea
+          class='form-input form-control'
+          id='recipe-steps'
+          name='steps'
+        ></textarea>
       </div>
-        <div class="mb-3">
-              <div class="form-file custom-file">
-                  <input class="form-control" type="file" id="formFile" name="image" multiple>
-                  <label class="form-file-label" for="image"></label>
-              </div>
+      <div class='mb-3'>
+        <div class='form-file custom-file'>
+          <input
+            class='form-control'
+            type='file'
+            id='formFile'
+            name='image'
+            multiple
+          />
+          <label class='form-file-label' for='image'></label>
         </div>
-                      {{!-- <button type="submit" class="btn btn-success">Upload</button> --}}
-          <div class="form-group">
-            <button type="submit" class="btn btn-success">Create</button>
-          </div>
-    </form>  
-   
-  </div>
+      </div>
+      {{! <button type="submit" class="btn btn-success">Upload</button> }}
+      <div class='form-group'>
+        <button type='submit' class='btn btn-success'>Create</button>
+      </div>
+    </form>
 
+  </div>
 
   {{#if recipes.length}}
-  <div class="col-md-6 project-list">
-    <h3>Current Recipes:</h3>
+    <div class='d-flex align-items-center justify-content-center flex-column'>
+      <h3>Current Recipes:</h3>
+      <div>{{#each recipes as |recipe|}}
+          <div class='mb-2'>
+            <div class='col-md-8'>
+              <h4><a href='/recipes/{{recipe.id}}'>{{recipe.name}}</a></h4>
+            </div>
+            <div class='m-2'>
+              <button
+                id='edit-link'
+                href='/profile'
+                class='btn btn-info m-2'
+                data-id='{{recipe.id}}'
+              >Edit</button>
+              <button
+                id='del-link'
+                class='btn btn-danger m-2'
+                data-id='{{recipe.id}}'
+              >Delete</button>
+            </div>
+          </div>
+        {{/each}}</div>
 
-    {{#each recipes as |recipe|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h4><a href="/recipes/{{recipe.id}}">{{recipe.name}}</a></h4>
-      </div>
-      <div class="col-md-4">
-        <button id="edit-link" href="/profile" class="btn btn-link" data-id="{{recipe.id}}">Edit</button>
-        <button id="del-link" class="btn btn-link" data-id="{{recipe.id}}">Delete</button> 
-      </div>
     </div>
-    {{/each}}
-  </div>
   {{/if}}
 </div>
 
-<script src="./js/profile.js"></script>
+<script src='./js/profile.js'></script>
