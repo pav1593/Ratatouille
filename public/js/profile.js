@@ -24,5 +24,5 @@ const delButtonHandler = async (event) => {
 
 
 document
-  .querySelector('.project-list')
+  .querySelector('#recipe-list')
   .addEventListener('click', delButtonHandler);
