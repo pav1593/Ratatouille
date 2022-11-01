@@ -19,7 +19,7 @@ Comment.init(
     },
     rating: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       validate: {
         // validate integer type and range is 1..5
         isInt: true, 
