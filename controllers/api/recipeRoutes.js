@@ -72,22 +72,29 @@ router.get('/', async (req, res) => {
 
       const recipe = recipeData.get({plain:true});
 
-      const imageData = await Image.create({
-        recipe_id: recipe.id,
-        description: req.files[0].originalname,
-        location: req.files[0].path,
-        user_id: req.session.user_id,
-      });
+      for (const img of req.files) {
+          const imageData = await Image.create({
+            recipe_id: recipe.id,
+            description: img.originalname,
+            location: img.path,
+            user_id: req.session.user_id,
+          });
+        }
+        
 
-      const message = {
+      // debugging block
+      /*const message = {
         recipeData,
         imageData
       }
-      res.status(200).json(message);
+      res.status(200).json(message);*/
+
+      res.status(200).redirect(`/profile`);
     } catch (err) {
       res.status(400).json(err);
     }
   });
+  
   
   router.put('/:id', async (req, res) => {
     // update a recipe by its `id` value
@@ -147,7 +154,7 @@ router.get('/', async (req, res) => {
         location: req.files[0].path,
         user_id: req.session.user_id,
       });
-      res.status(200).redirect(`/recipes/${req.params.recipe_id}`);
+      res.status(200).redirect(`/profile`);
     } catch (err) {
       res.status(400).json(err);
     }
