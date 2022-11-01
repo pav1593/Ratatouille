@@ -1,19 +1,39 @@
 <!-- Loop over each object in the projects array -->
-{{#each recipes as |recipe| }}
-<div class="container d-flex flex-wrap mt-5">
-  <!-- card replace with handlebar -->
-  <div class="card m-2" style="width: 50%">
-    <img class="card-img-top" src={{recipe.images.0.location}} alt="Card image cap" />
-    <div class="card-body align-item-center">
-      <h3 class="card-title">{{recipe.name}}</h3>
-      <p class="card-text">
-        {{recipe.description}}
-      </p>
-      <p class="card-text">
-        Created by {{recipe.user.name}} on {{format_date recipe.date_created}}
-      </p>
-      <a href="/recipes/{{recipe.id}}" class="btn btn-primary">View Recipe</a>
-    </div>
+
+<div class='jumbotron jumbotron-fluid'>
+  <div class='container'>
+    <h1 class='display-4'>Creativity meets community!</h1>
+    <p class='lead'>
+      Discover hundreds of cooking recipes from the community and also share
+      your recipes.
+    </p>
   </div>
 </div>
-{{/each}}
+<div class='container d-flex justify-content-between flex-wrap mt-5'>
+  <!-- card replace with handlebar -->
+  {{#each recipes as |recipe|}}
+    <div
+      class='card m-2 shadow-sm p-3 mb-5 bg-white rounded'
+      style='width:350px'
+    >
+      <img
+        class='card-img-top'
+        src={{recipe.images.0.location}}
+        alt='Card image cap'
+      />
+      <div class='card-body align-item-center'>
+        <h3 class='card-title'>{{recipe.name}}</h3>
+        <p class='card-text'>
+          {{recipe.description}}
+        </p>
+        <p class='card-text'>
+          Created by
+          {{recipe.user.name}}
+          on
+          {{format_date recipe.date_created}}
+        </p>
+        <a href='/recipes/{{recipe.id}}' class='btn btn-primary'>View Recipe</a>
+      </div>
+    </div>
+  {{/each}}
+</div>
