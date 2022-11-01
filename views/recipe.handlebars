@@ -1,17 +1,65 @@
-<div class="text-center">
-  <img src={{images.0.location}} style="width: 200px; height: 200px;">
-  <h2>{{name}}</h2>
-  <h3>{{description}}</h3> <br/>
-  <h2>Ingredients:</h2>
-  <p>{{ingredients}}</p> <br/>
-  <h2>Ingredients:</h2>
-  <p>{{steps}}</p> <br/>
-  <p>Created by {{user.name}} on {{format_date date_created}}</p>
-  
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <img class="card-img-top" src={{images.0.location}} alt="Card image cap" />
+    <h1 class="display-4">{{name}}</h1>
+  </div>
 </div>
-  {{#each images}}
-      <div>
-       <img src={{location}} style="width: 200px; height: 200px;">
-     </div>
-  {{/each}}
 
+<!-- container for all the recipes details-->
+<div class="container justify-content-center d-flex flex-wrap mt-5">
+  <div class="card">
+    <div class="card-body align-item-center">
+      <h5 class="card-title">Description:</h5>
+      <p class="card-text">
+        {{description}}
+      </p>
+      <h5 class="card-title">Ingredients:</h5>
+      <p class="card-text">
+        {{ingredients}}
+      </p>
+      <h5 class="card-title">Steps:</h5>
+      <p class="card-text">
+        {{steps}}
+      </p>
+      <h5 class="card-title">Created by:</h5>
+      <p class="card-text">
+        {{user.name}} on {{format_date date_created}}
+      </p>
+      {{!-- <button type="button" class="btn btn-danger float-right" id="favorite-recipe">
+        <i class="fa-solid fa-heart"></i>
+      </button> --}}
+    </div>
+    {{#each images}}
+    <div>
+      <img src={{location}} style="width: 200px; height: 200px;">
+    </div>
+    {{/each}}
+    <!-- comment cards generated -->
+    <h5 class="card-title">Comments: </h5>
+    {{#each comments as |comment|}}
+    <p>{{comment.comment}}</p>
+    <p>created by: on {{format_date comment.date_created}}</p>
+    {{/each}}
+  </div>
+  {{!-- add comments after login --}}
+  {{#if logged_in}}
+  <form class="comment-box comment-submit" action="POST">
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Share your comments here:</label>
+      <textarea class="form-control" id="recipe-comment" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary d-block mx-auto">
+      Submit
+    </button>
+  </form>
+</div>
+</div>
+{{/if}}
+
+
+
+
+
+
+
+<script src="/js/comment.js"></script>
