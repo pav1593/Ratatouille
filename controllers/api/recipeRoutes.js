@@ -91,18 +91,20 @@ router.post('/', upload.array('image'), async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res) => {
+router.post('/:id', withAuth, upload.none(), async (req, res) => {
   // update a recipe by its `id` value
   try {
     const recipeData = await Recipe.update(
       {
-        ...req.body,
+        name: req.body.name,
+        description: req.body.description,
+        ingredients: req.body.ingredients,
+        steps: req.body.steps,
         date_created: sequelize.literal('CURRENT_TIMESTAMP'),
       },
       // Gets the recipe based on the id given in the request parameters
       {
         where: {
-          user_id: req.session.user_id,
           id: req.params.id,
         },
       }
@@ -113,7 +115,9 @@ router.put('/:id', async (req, res) => {
       return;
     }
 
-    res.status(200).json(recipeData);
+    
+    res.status(200).redirect(`/profile`);
+
   } catch (err) {
     res.status(400).json(err);
   }
