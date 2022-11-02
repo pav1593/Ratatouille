@@ -63,6 +63,19 @@ router.get('/profile', withAuth, async (req, res) => {
   }
 });
 
+//------------------recipe update routes-------------------
+router.get('/update/:id', async (req, res) => {
+  try {
+    const recipeData = await Recipe.findByPk(req.params.id);
+
+    const recipe = recipeData.get({ plain: true });
+
+    res.render('update', { ...recipe, logged_in: true });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 //----------------login routes--------------------
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
