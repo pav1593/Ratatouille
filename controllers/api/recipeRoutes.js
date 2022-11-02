@@ -17,9 +17,6 @@ router.get('/', async (req, res) => {
         { model: Comment },
         { model: Image },
       ],
-      // where: {
-      //   user_id: req.session.user_id
-      // },
     });
 
     const recipes = recipeData.map((recipe) => recipe.get({ plain: true }));
@@ -45,9 +42,6 @@ router.get('/:id', async (req, res) => {
         { model: Comment },
         { model: Image },
       ],
-      // where: {
-      //   user_id: req.session.user_id
-      // },
     });
 
     if (!recipeData) {
@@ -64,8 +58,9 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/', upload.array('image'), async (req, res) => {
-  // create a new recipe
+  // create a new recipe with image upload using Cloudinary middleware via multer
   try {
+   // creates a new recipe
     const recipeData = await Recipe.create({
       ...req.body,
       user_id: req.session.user_id,
@@ -73,6 +68,7 @@ router.post('/', upload.array('image'), async (req, res) => {
 
     const recipe = recipeData.get({ plain: true });
 
+    //for each file name submitted and stored by multer add an image for the new recipe being created
     for (const img of req.files) {
       const imageData = await Image.create({
         recipe_id: recipe.id,
